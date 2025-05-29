@@ -7,6 +7,7 @@ import {
   filterByCategory,
   filterByPrice,
 } from "@/redux/features/productSlice";
+import Link from "next/link";
 
 
 const ProductsListing = () => {
@@ -111,18 +112,21 @@ const ProductsListing = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {searchedProducts.map((product) => (
             <div key={product.id} product={product} className="shadow ">
-              <div className=" overflow-hidden">
-                <Image
-                  src={product.image[0]}
-                  width={300}
-                  height={300}
-                  alt={product.name}
-                  className=" hover:scale-110 transition ease-in-out w-full h-80"
-                />
-              </div>
+              <Link href={`/products/${product._id}`}>
+                <div className=" overflow-hidden">
+                  <Image
+                    src={product.image[0]}
+                    width={300}
+                    height={300}
+                    alt={product.name}
+                    className=" hover:scale-110 transition ease-in-out w-full h-80"
+                  />
+                </div>
+              </Link>
               <div className="px-2 lg:px-6 py-2 lg:py-6">
                 <h2 className="text-lg font-bold">{product.name}</h2>
                 <p>${product.price}</p>
+
                 <div className="flex items-center justify-center">
                   <button className="bg-[#0658A8] text-white px-7 py-1 rounded mt-2">
                     Add to Cart
