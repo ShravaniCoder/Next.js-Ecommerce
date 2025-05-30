@@ -23,7 +23,7 @@ const Cart = () => {
     <>
       <Header />
       <div className="px-6 md:px-16 lg:px-32 my-6 pt-5">
-        <div className="border-t pt-14">
+        <div className="border-t border-gray-100 pt-14">
           <div className="inline-flex gap-2 items-center my-2 font-bold">
             <p className="text-[#002C5A]">Your Cart</p>
             <p className="w-8 sm:w-12 h-[1px] sm:h-[2px] bg-[#002C5A]"></p>
