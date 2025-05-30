@@ -74,7 +74,7 @@ export const products = [
   },
   {
     _id: "67a1f70c3f34a77b6dde9157",
-    name: "Canon EOS R5",
+    name: "Dress",
     description:
       "The Canon EOS R5 is a game-changing mirrorless camera with a 45MP full-frame sensor, offering ultra-high resolution and the ability to shoot 8K video. Whether you're capturing professional-quality stills or cinematic video footage, this camera delivers exceptional clarity, speed, and color accuracy. With advanced autofocus and in-body stabilization, the R5 is ideal for photographers and videographers alike.",
     price: 60,
@@ -86,7 +86,7 @@ export const products = [
   },
   {
     _id: "67a1f70c3f34a77b6dde9158",
-    name: "Canon EOS R5",
+    name: "Clock",
     description:
       "The Canon EOS R5 is a game-changing mirrorless camera with a 45MP full-frame sensor, offering ultra-high resolution and the ability to shoot 8K video. Whether you're capturing professional-quality stills or cinematic video footage, this camera delivers exceptional clarity, speed, and color accuracy. With advanced autofocus and in-body stabilization, the R5 is ideal for photographers and videographers alike.",
     price: 65,

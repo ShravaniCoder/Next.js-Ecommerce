@@ -6,11 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   filterByCategory,
   filterByPrice,
+ 
 } from "@/redux/features/productSlice";
+import { addToCart } from "@/redux/features/cartSlice";
 import Link from "next/link";
 
 
-const ProductsListing = () => {
+const ProductsListing = ({product}) => {
   const [showFilter, setShowFilter] = useState(false);
   const products = useSelector((state) => state.product.filteredProducts);
   const search = useSelector((state) => state.search.search);
@@ -21,6 +23,10 @@ const ProductsListing = () => {
       product.category.toLowerCase().includes(search.toLowerCase()) ||
       product.name.toLowerCase().includes(search.toLowerCase())
   );
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 mt-10 ">
       {/* Filter Options */}
@@ -110,9 +116,9 @@ const ProductsListing = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {searchedProducts.map((product) => (
-            <div key={product.id} product={product} className="shadow ">
-              <Link href={`/products/${product._id}`}>
+          {searchedProducts.map((product, index) => (
+            <Link href={`/products/${product._id}`} key={index}>
+              <div key={product.id} className="shadow ">
                 <div className=" overflow-hidden">
                   <Image
                     src={product.image[0]}
@@ -122,18 +128,22 @@ const ProductsListing = () => {
                     className=" hover:scale-110 transition ease-in-out w-full h-80"
                   />
                 </div>
-              </Link>
-              <div className="px-2 lg:px-6 py-2 lg:py-6">
-                <h2 className="text-lg font-bold">{product.name}</h2>
-                <p>${product.price}</p>
 
-                <div className="flex items-center justify-center">
-                  <button className="bg-[#0658A8] text-white px-7 py-1 rounded mt-2">
-                    Add to Cart
-                  </button>
+                <div className="px-2 lg:px-6 py-2 lg:py-6">
+                  <h2 className="text-lg font-bold">{product.name}</h2>
+                  <p>${product.price}</p>
+
+                  <div className="flex items-center justify-center">
+                    <button
+                      onClick={handleAddToCart}
+                      className="bg-[#0658A8] text-white px-7 py-1 rounded mt-2"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

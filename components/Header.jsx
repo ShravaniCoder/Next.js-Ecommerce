@@ -3,6 +3,7 @@ import { Search, ShoppingCart } from "lucide-react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearch, setShowSearch } from "@/redux/features/searchSlice";
+import Link from "next/link";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -35,9 +36,9 @@ const Header = () => {
           </div>
 
           {/* Cart Button */}
-          <button className="flex items-center justify-center gap-2 px-8 py-2 text-white rounded-lg bg-[#002C5A]">
+          <Link href="/cart" className="flex items-center justify-center gap-2 px-8 py-2 text-white rounded-lg bg-[#002C5A]">
             <ShoppingCart /> <h1 className="font-semibold text-base">Cart</h1>
-          </button>
+          </Link>
         </div>
       </div>
     </>
