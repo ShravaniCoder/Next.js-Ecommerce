@@ -8,11 +8,17 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { addToCart } from "@/redux/features/cartSlice";
+import Link from "next/link";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.singleProduct);
+  const relatedProducts = useSelector((state) =>
+    state.product.products.filter(
+      (p) => p.category === product?.category && p._id !== product._id
+    )
+  );
 
   useEffect(() => {
     if (id) {
@@ -86,10 +92,42 @@ const ProductDetailsPage = () => {
             </div>
           </div>
 
-          {/* <RelatedProducts
-            category={productData.category}
-            subCategory={productData.subCategory}
-          /> */}
+          <div className="mt-20">
+            <h2 className="text-xl font-semibold mb-5 text-[#002C5A]">
+              Related Products
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {relatedProducts.map((item, index) => (
+                <Link key={index} href={`/products/${item._id}`}>
+                  <div className="shadow">
+                    <div className="overflow-hidden">
+                      <Image
+                        src={item.image[0]}
+                        width={300}
+                        height={300}
+                        alt={item.name}
+                        className="hover:scale-110 transition ease-in-out w-full h-80"
+                      />
+                    </div>
+
+                    <div className="px-2 lg:px-6 py-2 lg:py-6">
+                      <h2 className="text-lg font-bold">{item.name}</h2>
+                      <p>${item.price}</p>
+
+                      <div className="flex items-center justify-center">
+                        <button
+                          onClick={handleAddToCart}
+                          className="bg-[#0658A8] text-white px-7 py-1 rounded mt-2"
+                        >
+                          Add to Cart
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
       <Footer />

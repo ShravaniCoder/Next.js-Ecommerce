@@ -57,7 +57,7 @@ export const selectDeliveryFee = (state) => state.cart?.delivery_fee ?? 0;
 export const selectTotal = (state) =>
   selectSubtotal(state) + selectDeliveryFee(state);
 
-export const selectCurrency = (state) => state.cart?.currency || "₹";
+export const selectCurrency = (state) => state.cart?.currency || "$";
 
   
 

@@ -62,7 +62,6 @@ const Cart = () => {
                     onChange={(e) => {
                       const val = e.target.value;
                       if (val === "") {
-                      
                         return;
                       }
                       const num = Number(val);
@@ -91,7 +90,7 @@ const Cart = () => {
               <div className="text-end">
                 <button
                   onClick={() => alert("Proceeding to checkout...")}
-                  className="bg-black text-white text-sm my-8 px-9 py-3"
+                  className="bg-[#002C5A] rounded text-white text-sm my-8 px-9 py-3"
                 >
                   PROCEED TO CHECKOUT
                 </button>
