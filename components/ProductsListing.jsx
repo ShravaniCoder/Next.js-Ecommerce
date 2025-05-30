@@ -115,37 +115,43 @@ const ProductsListing = ({product}) => {
             <p className="w-8 sm:w-12 h-[1px] sm:h-[2px] bg-[#002C5A]"></p>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {searchedProducts.map((product, index) => (
-            <Link href={`/products/${product._id}`} key={index}>
-              <div key={product.id} className="shadow ">
-                <div className=" overflow-hidden">
-                  <Image
-                    src={product.image[0]}
-                    width={300}
-                    height={300}
-                    alt={product.name}
-                    className=" hover:scale-110 transition ease-in-out w-full h-80"
-                  />
-                </div>
+        {searchedProducts.length === 0 ? (
+          <div className="text-center text-gray-500 text-lg mt-10">
+            No products found.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {searchedProducts.map((product, index) => (
+              <Link href={`/products/${product._id}`} key={index}>
+                <div className="shadow">
+                  <div className="overflow-hidden">
+                    <Image
+                      src={product.image[0]}
+                      width={300}
+                      height={300}
+                      alt={product.name}
+                      className="hover:scale-110 transition ease-in-out w-full h-80"
+                    />
+                  </div>
 
-                <div className="px-2 lg:px-6 py-2 lg:py-6">
-                  <h2 className="text-lg font-bold">{product.name}</h2>
-                  <p>${product.price}</p>
+                  <div className="px-2 lg:px-6 py-2 lg:py-6">
+                    <h2 className="text-lg font-bold">{product.name}</h2>
+                    <p>${product.price}</p>
 
-                  <div className="flex items-center justify-center">
-                    <button
-                      onClick={handleAddToCart}
-                      className="bg-[#0658A8] text-white px-7 py-1 rounded mt-2"
-                    >
-                      Add to Cart
-                    </button>
+                    <div className="flex items-center justify-center">
+                      <button
+                        onClick={handleAddToCart}
+                        className="bg-[#0658A8] text-white px-7 py-1 rounded mt-2"
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
